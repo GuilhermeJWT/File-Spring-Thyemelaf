@@ -26,8 +26,8 @@ public class FileController {
 	
 	@GetMapping(value = "/")
 	public String get(Model model) {
-		List<ModelFile> arquivos = fileService.listaTodosFiles();
-		model.addAttribute("arquivos", arquivos);
+		List<ModelFile> files = fileService.listaTodosFiles();
+		model.addAttribute("files", files);
 		
 		return "file";
 	}
@@ -40,6 +40,7 @@ public class FileController {
 		return "redirect:/";
 	}
 	
+	@GetMapping(value = "/uploadFiles/{id}")
 	public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Long id){
 		ModelFile arquivo = fileService.retornaArquivoId(id).get();
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(arquivo.getType()))

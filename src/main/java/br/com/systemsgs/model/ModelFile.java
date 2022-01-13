@@ -61,6 +61,10 @@ public class ModelFile implements Serializable{
     @Column(name = "data")
     @Lob
     private byte[] data;
+    
+    public ModelFile() {
+    	
+    }
 
     public ModelFile(String enderecoArquivo, String nomeOrigem, Integer codigoCategoria, Integer codigoUsuarioIncl, String descricaoArquivo, Long tamanhoArquivo, String flagMigr, String hash, String ativo, String type, byte[] data) {
         this.enderecoArquivo = enderecoArquivo;
