@@ -22,14 +22,18 @@ public class FileService {
 		String fileDownloadUri = "Teste URI de Download";
 		
 		try {
-			ModelFile arquivo = new ModelFile(fileDownloadUri, fileName, 1, 1, "Descricao Arquivo", file.getSize(), "Flag Migr", geradorMd5DigestUtil(file), "SIM");
+			ModelFile arquivo = new ModelFile(fileDownloadUri, fileName, 1, 1, "Descricao Arquivo", file.getSize(), "Flag Migr", geradorMd5DigestUtil(file), "SIM", file.getContentType(), file.getBytes());
 			return fileRepository.save(arquivo);
 		}catch (Exception e){
             throw new RuntimeException("Erro ao tentar salvar Arquivo, Tente Novamente.");
         }
 	}
 	
-	public Optional<ModelFile> retornaArquivo(String hash) {
+	public Optional<ModelFile> retornaArquivoId(Long id) {
+		return fileRepository.findById(id);
+	}
+	
+	public Optional<ModelFile> retornaArquivoHash(String hash) {
 		return fileRepository.findByHash(hash);
 	}
 	

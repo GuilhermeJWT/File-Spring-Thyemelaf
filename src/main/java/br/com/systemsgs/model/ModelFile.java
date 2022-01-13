@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -53,8 +54,15 @@ public class ModelFile implements Serializable{
 
     @Column(name = "flg_ati")
     private String ativo;
+    
+    @Column(name = "type")
+    private String type;
+    
+    @Column(name = "data")
+    @Lob
+    private byte[] data;
 
-    public ModelFile(String enderecoArquivo, String nomeOrigem, Integer codigoCategoria, Integer codigoUsuarioIncl, String descricaoArquivo, Long tamanhoArquivo, String flagMigr, String hash, String ativo) {
+    public ModelFile(String enderecoArquivo, String nomeOrigem, Integer codigoCategoria, Integer codigoUsuarioIncl, String descricaoArquivo, Long tamanhoArquivo, String flagMigr, String hash, String ativo, String type, byte[] data) {
         this.enderecoArquivo = enderecoArquivo;
         this.nomeOrigem = nomeOrigem;
         this.codigoCategoria = codigoCategoria;
@@ -64,6 +72,8 @@ public class ModelFile implements Serializable{
         this.flagMigr = flagMigr;
         this.hash = hash;
         this.ativo = ativo;
+        this.type = type;
+        this.data = data;
     }
 
 	public Long getId() {
@@ -160,6 +170,22 @@ public class ModelFile implements Serializable{
 
 	public void setAtivo(String ativo) {
 		this.ativo = ativo;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public byte[] getData() {
+		return data;
+	}
+	
+	public void setData(byte[] data) {
+		this.data = data;
 	}
 
 	@Override
